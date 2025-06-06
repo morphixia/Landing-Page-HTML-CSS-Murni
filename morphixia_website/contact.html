@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Morphixia</title>
+    <meta name="description" content="Get in touch with Morphixia for business process analysis, system design, and UI/UX services. Transform your business processes and systems with our expertise.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Additional styles specific to contact page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-form-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-info-container {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .contact-info-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info-content {
+            color: var(--medium-gray);
+        }
+        
+        .social-links-contact {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border-radius: 50%;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link-contact:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .faq-section {
+            margin-top: 4rem;
+        }
+        
+        .faq-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .faq-answer {
+            color: var(--medium-gray);
+        }
+        
+        .form-success {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Morphixia Logo">
+                    <span class="logo-text">Morphixia</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Get in Touch</h1>
+                <p class="hero-subtitle">Ready to transform your business processes or systems? We're here to help. Reach out for a consultation, question, or just to say hello.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <div class="form-success" id="form-success">
+                        <p>Thank you for your message! We'll get back to you shortly.</p>
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select id="subject" name="subject" class="form-control" required>
+                                <option value="" selected disabled>Select a subject</option>
+                                <option value="Business Process Analysis Inquiry">Business Process Analysis Inquiry</option>
+                                <option value="System Design Inquiry">System Design Inquiry</option>
+                                <option value="UI/UX Design Inquiry">UI/UX Design Inquiry</option>
+                                <option value="General Question">General Question</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info-container">
+                    <h2>Contact Information</h2>
+                    
+                    <div class="contact-info-item">
+                        <h3 class="contact-info-title">Email</h3>
+                        <p class="contact-info-content">hello@morphixia.com</p>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <h3 class="contact-info-title">Response Time</h3>
+                        <p class="contact-info-content">We typically respond within 24-48 business hours.</p>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <h3 class="contact-info-title">Connect With Us</h3>
+                        <div class="social-links-contact">
+                            <a href="#" class="social-link-contact"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-link-contact"><i class="fab fa-github"></i></a>
+                            <a href="#" class="social-link-contact"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h3 class="faq-question">What types of businesses do you work with?</h3>
+                        <p class="faq-answer">We work with businesses of all sizes across various industries. Our methodologies are adaptable to different contexts, from startups to established enterprises.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">How long does a typical project take?</h3>
+                        <p class="faq-answer">Project timelines vary based on scope and complexity. A single process analysis might take 1-2 weeks, while a comprehensive system design could take 4-8 weeks. We'll provide a detailed timeline during our initial consultation.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">Do you offer remote services?</h3>
+                        <p class="faq-answer">Yes, we offer fully remote services and can collaborate effectively using digital tools for meetings, documentation, and deliverables.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">What deliverables can I expect?</h3>
+                        <p class="faq-answer">Deliverables vary by service but typically include digital documentation, diagrams, designs, and implementation recommendations in formats that are easy to share and reference.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">How do you price your services?</h3>
+                        <p class="faq-answer">We offer package-based pricing as well as custom quotes based on project scope. Contact us for a personalized quote based on your specific needs.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3 class="faq-question">I'm not sure which service I need. Can you help?</h3>
+                        <p class="faq-answer">Absolutely! During our initial consultation, we'll discuss your challenges and objectives to recommend the most appropriate services for your situation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="img/logo-white.png" alt="Morphixia Logo">
+                        <span class="logo-text">Morphixia</span>
+                    </div>
+                    <p class="footer-about">Morphixia specializes in business process analysis, system design, and UI/UX services. We transform complex challenges into clear, efficient solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="services.html">Services</a></li>
+                        <li class="footer-link"><a href="portfolio.html">Portfolio</a></li>
+                        <li class="footer-link"><a href="about.html">About</a></li>
+                        <li class="footer-link"><a href="blog.html">Blog</a></li>
+                        <li class="footer-link"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@morphixia.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Morphixia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real implementation, you would send the form data to a server here
+                // For this demo, we'll just show the success message
+                formSuccess.style.display = 'block';
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formSuccess.style.display = 'none';
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>

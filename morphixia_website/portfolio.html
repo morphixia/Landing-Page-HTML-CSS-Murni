@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Morphixia</title>
+    <meta name="description" content="Explore Morphixia's portfolio of business process analyses, system designs, and UI/UX projects that transform complex challenges into clear solutions.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Additional styles specific to portfolio page */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-family: var(--heading-font);
+            font-weight: 500;
+            color: var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .filter-btn.active {
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 1.5rem;
+        }
+        
+        .portfolio-title {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-category {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-description {
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+        
+        /* Case Study Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--white);
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .case-study-hero {
+            position: relative;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .case-study-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+        }
+        
+        .case-study-hero-content {
+            position: relative;
+            padding: 2rem;
+            color: var(--white);
+            width: 100%;
+        }
+        
+        .case-study-body {
+            padding: 2rem;
+        }
+        
+        .case-study-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .meta-item h4 {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .meta-item p {
+            font-weight: 600;
+        }
+        
+        .case-study-section {
+            margin-bottom: 2rem;
+        }
+        
+        .case-study-image {
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+        }
+        
+        .case-study-navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background-color: var(--light-gray);
+        }
+        
+        .nav-prev, .nav-next {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-prev i, .nav-next i {
+            margin: 0 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-hero {
+                height: 300px;
+            }
+            
+            .case-study-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Morphixia Logo">
+                    <span class="logo-text">Morphixia</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Our Work</h1>
+                <p class="hero-subtitle">Explore our portfolio of business process analyses, system designs, and UI/UX projects. Each case study demonstrates our methodical approach to transforming complex challenges into clear, efficient solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Portfolio Filters -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="process-analysis">Business Process Analysis</button>
+                <button class="filter-btn" data-filter="system-design">System Design</button>
+                <button class="filter-btn" data-filter="ui-ux">UI/UX Design</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <!-- Case Study 1 -->
+                <div class="portfolio-item" data-category="process-analysis" data-modal="case-study-1">
+                    <img src="img/portfolio-1.jpg" alt="E-Commerce Order Processing" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">E-Commerce Order Processing Optimization</h3>
+                        <p class="portfolio-category">Business Process Analysis</p>
+                        <p class="portfolio-description">Reduced order processing time by 40% through comprehensive process analysis and redesign.</p>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="portfolio-item" data-category="system-design" data-modal="case-study-2">
+                    <img src="img/portfolio-2.jpg" alt="Inventory Management System" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Inventory Management System Design</h3>
+                        <p class="portfolio-category">System Design</p>
+                        <p class="portfolio-description">Created detailed system documentation using ICONIX methodology for a scalable inventory solution.</p>
+                    </div>
+                </div>
+                
+                <!-- Case Study 3 -->
+                <div class="portfolio-item" data-category="ui-ux" data-modal="case-study-3">
+                    <img src="img/portfolio-3.jpg" alt="Financial Dashboard" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Financial Services Dashboard</h3>
+                        <p class="portfolio-category">UI/UX Design</p>
+                        <p class="portfolio-description">Designed intuitive user interface for complex financial data, improving user engagement by 35%.</p>
+                    </div>
+                </div>
+                
+                <!-- Case Study 4 -->
+                <div class="portfolio-item" data-category="process-analysis" data-modal="case-study-4">
+                    <img src="img/portfolio-4.jpg" alt="Student Registration Process" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Student Registration Process Redesign</h3>
+                        <p class="portfolio-category">Business Process Analysis</p>
+                        <p class="portfolio-description">Cumbersome registration process causing student frustration and administrative burden.</p>
+                    </div>
+                </div>
+                
+                <!-- Case Study 5 -->
+                <div class="portfolio-item" data-category="ui-ux" data-modal="case-study-5">
+                    <img src="img/portfolio-5.jpg" alt="Healthcare Patient Portal" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Healthcare Patient Portal</h3>
+                        <p class="portfolio-category">UI/UX Design</p>
+                        <p class="portfolio-description">Complete UI/UX redesign focused on accessibility and simplicity.</p>
+                    </div>
+                </div>
+                
+                <!-- Case Study 6 -->
+                <div class="portfolio-item" data-category="system-design" data-modal="case-study-6">
+                    <img src="img/portfolio-6.jpg" alt="Supply Chain Documentation" class="portfolio-image">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">Supply Chain Documentation</h3>
+                        <p class="portfolio-category">System Design</p>
+                        <p class="portfolio-description">Comprehensive system documentation using ICONIX methodology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Modals -->
+    <!-- Case Study 1 Modal -->
+    <div id="case-study-1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            
+            <div class="case-study-hero" style="background-image: url('img/portfolio-1-large.jpg');">
+                <div class="case-study-hero-overlay"></div>
+                <div class="case-study-hero-content">
+                    <h2>E-Commerce Order Processing Optimization</h2>
+                    <p>Business Process Analysis</p>
+                </div>
+            </div>
+            
+            <div class="case-study-body">
+                <div class="case-study-meta">
+                    <div class="meta-item">
+                        <h4>Client</h4>
+                        <p>E-Commerce Retailer</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Challenge</h4>
+                        <p>Lengthy order processing times</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Solution</h4>
+                        <p>Process analysis and redesign using BPMN</p>
+                    </div>
+                    <div class="meta-item">
+                        <h4>Results</h4>
+                        <p>40% reduction in processing time</p>
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h3>The Challenge</h3>
+                    <p>Our client, a growing e-commerce retailer, was struggling with lengthy order processing times that were leading to customer dissatisfaction and operational inefficiencies. The existing process involved multiple manual steps, redundant approvals, and siloed departments that didn't communicate effectively.</p>
+                    <p>Key issues included:</p>
+                    <ul>
+                        <li>Average order processing time of 48 hours</li>
+                        <li>15% error rate in order fulfillment</li>
+                        <li>No clear visibility into order status</li>
+                        <li>Inconsistent processes across different product categories</li>
+                    </ul>
+                </div>
+                
+                <div class="case-study-section">
+                    <h3>Our Approach</h3>
+                    <p>We conducted a comprehensive analysis of the existing order processing workflow using Business Process Model and Notation (BPMN). This involved:</p>
+                    <ol>
+                        <li>Documenting the current "as-is" process through stakeholder interviews and observation</li>
+                        <li>Creating detailed BPMN diagrams to visualize the entire order flow</li>
+                        <li>Identifying bottlenecks, redundancies, and error-prone steps</li>
+                        <li>Designing an optimized "to-be" process that eliminated unnecessary steps and approvals</li>
+                    </ol>
+                    
+                    <div class="case-study-image">
+                        <img src="img/bpmn-as-is.jpg" alt="As-Is BPMN Diagram">
+                    </div>
+                    
+                    <p>The analysis revealed several critical bottlenecks:</p>
+                    <ul>
+                        <li>Multiple manual data entry points causing delays and errors</li>
+                        <li>Unnecessary approval steps for standard orders</li>
+                        <li>Poor integration between order management and inventory systems</li>
+                        <li>Lack of automated notifications for order status updates</li>
+                    </ul>
+                </div>
+                
+                <div class="case-study-section">
+                    <h3>The Solution</h3>
+                    <p>Based on our analysis, we designed an optimized order processing workflow that:</p>
+                    <ul>
+                        <li>Automated data transfer between systems to eliminate manual entry</li>
+                        <li>Implemented a tiered approval system based on order value and complexity</li>
+                        <li>Created a centralized dashboard for real-time order status visibility</li>
+                        <li>Standardized processes across all product categories</li>
+                    </ul>
+                    
+                    <div class="case-study-image">
+                        <img src="img/bpmn-to-be.jpg" alt="To-Be BPMN Diagram">
+                    </div>
+                </div>
+                
+                <div class="case-study-section">
+                    <h3>Results</h3>
+                    <p>The implementation of the redesigned process yielded significant improvements:</p>
+                    <ul>
+                        <li><strong>40% reduction</strong> in order processing time (from 48 hours to 29 hours)</li>
+                        <li><strong>25% decrease</strong> in order fulfillment errors</li>
+                        <li><strong>100% visibility</strong> into order status for customer service team</li>
+                        <li><strong>Improved customer satisfaction</strong> scores by 15 points</li>
+                    </ul>
+                    <p>The standardized, documented process also provided a solid foundation for training new staff and scaling operations as the business continues to grow.</p>
+                </div>
+            </div>
+            
+            <div class="case-study-navigation">
+                <div class="nav-prev">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Previous Project</span>
+                </div>
+                <div class="nav-next">
+                    <span>Next Project</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="contact-cta-title">Ready to Transform Your Business?</h2>
+            <p class="contact-cta-subtitle">Contact us for a consultation tailored to your needs</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="img/logo-white.png" alt="Morphixia Logo">
+                        <span class="logo-text">Morphixia</span>
+                    </div>
+                    <p class="footer-about">Morphixia specializes in business process analysis, system design, and UI/UX services. We transform complex challenges into clear, efficient solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="services.html">Services</a></li>
+                        <li class="footer-link"><a href="portfolio.html">Portfolio</a></li>
+                        <li class="footer-link"><a href="about.html">About</a></li>
+                        <li class="footer-link"><a href="blog.html">Blog</a></li>
+                        <li class="footer-link"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@morphixia.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Morphixia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Portfolio Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = btn.getAttribute('data-filter');
+                    
+                    // Filter portfolio items
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const portfolioModals = document.querySelectorAll('.modal');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            
+            // Open modal when clicking on portfolio item
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const modalId = item.getAttribute('data-modal');
+                    document.getElementById(modalId).style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                });
+            });
+            
+            // Close modal when clicking on close button
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Enable scrolling
+                });
+            });
+            
+            // Close modal when clicking outside of modal content
+            portfolioModals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto'; // Enable scrolling
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

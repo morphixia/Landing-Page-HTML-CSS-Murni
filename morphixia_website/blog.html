@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Morphixia</title>
+    <meta name="description" content="Explore Morphixia's insights on business process analysis, system design, UI/UX, and more to help transform your business operations and digital experiences.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Additional styles specific to blog page */
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-family: var(--heading-font);
+            font-weight: 500;
+            color: var(--medium-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .filter-btn.active {
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-date {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            margin-right: 1rem;
+        }
+        
+        .blog-category {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .blog-title {
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-footer {
+            margin-top: auto;
+        }
+        
+        /* Blog Post Page Styles */
+        .blog-post-header {
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-post-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-post-content ul,
+        .blog-post-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .blog-post-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .blog-post-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+        }
+        
+        .related-posts {
+            margin-top: 4rem;
+        }
+        
+        .related-posts-title {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Morphixia Logo">
+                    <span class="logo-text">Morphixia</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Insights & Articles</h1>
+                <p class="hero-subtitle">Explore our latest thoughts on business process analysis, system design, UI/UX, and more. Our blog shares knowledge, insights, and practical tips to help you transform your business operations and digital experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Blog Filters -->
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="process-analysis">Process Analysis</button>
+                <button class="filter-btn" data-filter="system-design">System Design</button>
+                <button class="filter-btn" data-filter="ui-ux">UI/UX Design</button>
+                <button class="filter-btn" data-filter="learning">Learning Reflections</button>
+            </div>
+            
+            <!-- Blog Grid -->
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card" data-category="process-analysis">
+                    <img src="img/blog-1.jpg" alt="BPMN Guide" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">June 2025</span>
+                            <span class="blog-category">Process Analysis</span>
+                        </div>
+                        <h3 class="blog-title">Understanding BPMN: A Beginner's Guide</h3>
+                        <p class="blog-excerpt">Business Process Model and Notation (BPMN) provides a standard for visualizing business processes. In this guide, we break down the basics of BPMN and how it can transform your understanding of business operations.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="blog-card" data-category="system-design">
+                    <img src="img/blog-2.jpg" alt="ICONIX Process" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">May 2025</span>
+                            <span class="blog-category">System Design</span>
+                        </div>
+                        <h3 class="blog-title">The ICONIX Process: Bridging Business and Technical Requirements</h3>
+                        <p class="blog-excerpt">Discover how the ICONIX methodology creates a streamlined path from use cases to code, ensuring your system design meets both business needs and technical specifications.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="blog-card" data-category="ui-ux">
+                    <img src="img/blog-3.jpg" alt="UI/UX Principles" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">April 2025</span>
+                            <span class="blog-category">UI/UX Design</span>
+                        </div>
+                        <h3 class="blog-title">UI/UX Principles for Business Applications</h3>
+                        <p class="blog-excerpt">Effective business applications balance functionality with usability. Learn the key UI/UX principles that can transform your business tools from functional to exceptional.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 4 -->
+                <div class="blog-card" data-category="process-analysis">
+                    <img src="img/blog-4.jpg" alt="Process Transformation" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">March 2025</span>
+                            <span class="blog-category">Process Analysis</span>
+                        </div>
+                        <h3 class="blog-title">From As-Is to To-Be: Transforming Business Processes</h3>
+                        <p class="blog-excerpt">Process transformation is more than just drawing diagrams. Learn our methodical approach to moving from current state ("as-is") to optimized future state ("to-be") processes.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 5 -->
+                <div class="blog-card" data-category="system-design">
+                    <img src="img/blog-5.jpg" alt="System Documentation" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">February 2025</span>
+                            <span class="blog-category">System Design</span>
+                        </div>
+                        <h3 class="blog-title">System Documentation Best Practices</h3>
+                        <p class="blog-excerpt">Good system documentation is essential for successful implementation and maintenance. Discover best practices for creating documentation that truly adds value.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 6 -->
+                <div class="blog-card" data-category="learning">
+                    <img src="img/blog-6.jpg" alt="Learning Reflection" class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">January 2025</span>
+                            <span class="blog-category">Learning Reflections</span>
+                        </div>
+                        <h3 class="blog-title">Learning Reflection: From Theory to Practice in System Analysis</h3>
+                        <p class="blog-excerpt">The journey from theoretical knowledge to practical application in system analysis presents unique challenges and insights. This reflection explores key learnings from this transition.</p>
+                        <div class="blog-footer">
+                            <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Blog Post (Hidden, linked from blog cards) -->
+    <!-- This would typically be a separate page, but included here for reference -->
+    <div style="display: none;">
+        <section class="section">
+            <div class="container">
+                <div class="blog-post-content">
+                    <div class="blog-post-header">
+                        <h1>Understanding BPMN: A Beginner's Guide</h1>
+                        <div class="blog-post-meta">
+                            <span class="blog-date">June 2025</span>
+                            <span class="blog-category">Process Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <img src="img/blog-1-full.jpg" alt="BPMN Guide" class="blog-post-image">
+                    
+                    <p>Business Process Model and Notation (BPMN) provides a standard for visualizing business processes. In this guide, we break down the basics of BPMN and how it can transform your understanding of business operations.</p>
+                    
+                    <h2>What is BPMN and Why It Matters</h2>
+                    <p>BPMN (Business Process Model and Notation) is a graphical representation for specifying business processes in a business process model. It was developed by the Business Process Management Initiative (BPMI) and is now maintained by the Object Management Group.</p>
+                    
+                    <p>BPMN matters because it provides a standard notation that is readily understandable by all business stakeholders, from business analysts who create the initial drafts of processes, to technical developers responsible for implementing the technology that will perform those processes, and finally, to business people who will manage and monitor those processes.</p>
+                    
+                    <h2>Core BPMN Elements Explained</h2>
+                    <p>BPMN consists of four basic categories of elements:</p>
+                    
+                    <h3>1. Flow Objects</h3>
+                    <p>These are the main graphical elements that define the behavior of a business process:</p>
+                    <ul>
+                        <li><strong>Events:</strong> Represented by circles, events indicate something that happens during the process. They can be start events (thin single circle), intermediate events (thin double circle), or end events (thick circle).</li>
+                        <li><strong>Activities:</strong> Represented by rounded rectangles, activities show work being performed in the process. They can be tasks (atomic activities) or sub-processes (compound activities).</li>
+                        <li><strong>Gateways:</strong> Represented by diamond shapes, gateways control the divergence and convergence of sequence flows. They determine branching, forking, merging, and joining of paths.</li>
+                    </ul>
+                    
+                    <h3>2. Connecting Objects</h3>
+                    <p>These connect flow objects to each other or to other information:</p>
+                    <ul>
+                        <li><strong>Sequence Flows:</strong> Represented by solid lines with arrowheads, they show the order in which activities are performed.</li>
+                        <li><strong>Message Flows:</strong> Represented by dashed lines with open arrowheads, they show the flow of messages between two participants.</li>
+                        <li><strong>Associations:</strong> Represented by dotted lines, they link artifacts or text to flow objects.</li>
+                    </ul>
+                    
+                    <h3>3. Swimlanes</h3>
+                    <p>Swimlanes organize activities into visual categories to illustrate different functional capabilities or responsibilities:</p>
+                    <ul>
+                        <li><strong>Pools:</strong> Represent major participants in a process, typically different organizations.</li>
+                        <li><strong>Lanes:</strong> Sub-partitions within a pool that extend the entire length of the pool, often representing different departments or roles within an organization.</li>
+                    </ul>
+                    
+                    <h3>4. Artifacts</h3>
+                    <p>Artifacts provide additional information about the process:</p>
+                    <ul>
+                        <li><strong>Data Objects:</strong> Show what data is required or produced by activities.</li>
+                        <li><strong>Groups:</strong> Group elements that are logically related.</li>
+                        <li><strong>Annotations:</strong> Provide additional text information for the reader of the BPMN diagram.</li>
+                    </ul>
+                    
+                    <h2>How to Read a BPMN Diagram</h2>
+                    <p>Reading a BPMN diagram involves understanding the flow from start to end:</p>
+                    <ol>
+                        <li>Identify the start event(s) (thin single circle).</li>
+                        <li>Follow the sequence flows (solid lines with arrowheads) to understand the process flow.</li>
+                        <li>Pay attention to gateways (diamonds) that indicate decision points or parallel paths.</li>
+                        <li>Note the activities (rounded rectangles) that represent work being done.</li>
+                        <li>Observe how the process concludes at end events (thick circles).</li>
+                        <li>Consider the swimlanes to understand who is responsible for each activity.</li>
+                    </ol>
+                    
+                    <h2>Common BPMN Patterns for Business Processes</h2>
+                    <p>Several common patterns appear in business process models:</p>
+                    
+                    <h3>Sequential Flow</h3>
+                    <p>The simplest pattern where activities are performed one after another in a linear sequence.</p>
+                    
+                    <h3>Parallel Split and Join</h3>
+                    <p>Activities that can be performed concurrently, represented by parallel gateways (diamonds with a plus sign).</p>
+                    
+                    <h3>Exclusive Decision and Merge</h3>
+                    <p>Decision points where only one path is chosen based on a condition, represented by exclusive gateways (diamonds with an X).</p>
+                    
+                    <h3>Inclusive Decision and Merge</h3>
+                    <p>Decision points where one or more paths can be taken, represented by inclusive gateways (diamonds with a circle).</p>
+                    
+                    <h3>Loops</h3>
+                    <p>Repetition of activities until a condition is met, often represented by sequence flows that go back to earlier activities.</p>
+                    
+                    <h2>Getting Started with BPMN in Your Organization</h2>
+                    <p>To start using BPMN in your organization:</p>
+                    <ol>
+                        <li><strong>Select a Tool:</strong> Choose a BPMN modeling tool that suits your needs (e.g., Lucidchart, draw.io, Visio).</li>
+                        <li><strong>Start Simple:</strong> Begin with simple processes and gradually increase complexity.</li>
+                        <li><strong>Document Current Processes:</strong> Create "as-is" diagrams of your existing processes.</li>
+                        <li><strong>Identify Improvement Opportunities:</strong> Analyze the diagrams to find bottlenecks and inefficiencies.</li>
+                        <li><strong>Design Improved Processes:</strong> Create "to-be" diagrams that address the identified issues.</li>
+                        <li><strong>Validate with Stakeholders:</strong> Ensure the diagrams accurately represent the processes and that stakeholders understand them.</li>
+                        <li><strong>Implement and Monitor:</strong> Use the diagrams to guide implementation and monitor the results.</li>
+                    </ol>
+                    
+                    <h2>Conclusion</h2>
+                    <p>BPMN is a powerful tool for visualizing, understanding, and improving business processes. By providing a standard notation that bridges the gap between business and technical stakeholders, BPMN facilitates better communication, clearer documentation, and more effective process improvement initiatives.</p>
+                    
+                    <p>Whether you're documenting existing processes, designing new ones, or identifying opportunities for improvement, BPMN can help transform your understanding of business operations and drive meaningful change in your organization.</p>
+                </div>
+                
+                <div class="related-posts">
+                    <h2 class="related-posts-title">Related Articles</h2>
+                    <div class="related-posts-grid">
+                        <div class="blog-card">
+                            <img src="img/blog-4.jpg" alt="Process Transformation" class="blog-image">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date">March 2025</span>
+                                    <span class="blog-category">Process Analysis</span>
+                                </div>
+                                <h3 class="blog-title">From As-Is to To-Be: Transforming Business Processes</h3>
+                                <p class="blog-excerpt">Process transformation is more than just drawing diagrams. Learn our methodical approach to moving from current state ("as-is") to optimized future state ("to-be") processes.</p>
+                                <div class="blog-footer">
+                                    <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="blog-card">
+                            <img src="img/blog-2.jpg" alt="ICONIX Process" class="blog-image">
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span class="blog-date">May 2025</span>
+                                    <span class="blog-category">System Design</span>
+                                </div>
+                                <h3 class="blog-title">The ICONIX Process: Bridging Business and Technical Requirements</h3>
+                                <p class="blog-excerpt">Discover how the ICONIX methodology creates a streamlined path from use cases to code, ensuring your system design meets both business needs and technical specifications.</p>
+                                <div class="blog-footer">
+                                    <a href="blog-post.html" class="btn btn-secondary">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="contact-cta-title">Ready to Transform Your Business?</h2>
+            <p class="contact-cta-subtitle">Contact us for a consultation tailored to your needs</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="img/logo-white.png" alt="Morphixia Logo">
+                        <span class="logo-text">Morphixia</span>
+                    </div>
+                    <p class="footer-about">Morphixia specializes in business process analysis, system design, and UI/UX services. We transform complex challenges into clear, efficient solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="services.html">Services</a></li>
+                        <li class="footer-link"><a href="portfolio.html">Portfolio</a></li>
+                        <li class="footer-link"><a href="about.html">About</a></li>
+                        <li class="footer-link"><a href="blog.html">Blog</a></li>
+                        <li class="footer-link"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@morphixia.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Morphixia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Blog Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = btn.getAttribute('data-filter');
+                    
+                    // Filter blog cards
+                    blogCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

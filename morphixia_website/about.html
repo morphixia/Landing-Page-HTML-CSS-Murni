@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Morphixia</title>
+    <meta name="description" content="Learn about Morphixia's approach to transforming complex business processes and systems into clear, efficient solutions through methodical analysis and thoughtful design.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Additional styles specific to about page */
+        .about-hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .about-section:last-child {
+            border-bottom: none;
+        }
+        
+        .about-section-title {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .about-story {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .mission-box, .vision-box {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            color: var(--primary-color);
+        }
+        
+        .value-icon i {
+            font-size: 1.5rem;
+        }
+        
+        .value-title {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .expertise-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .expertise-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .expertise-list {
+            list-style: none;
+        }
+        
+        .expertise-item {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .expertise-item i {
+            color: var(--primary-color);
+            margin-right: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tool-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-section {
+            text-align: center;
+        }
+        
+        .team-bio {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .team-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 768px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Morphixia Logo">
+                    <span class="logo-text">Morphixia</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content about-hero">
+                <h1 class="hero-title">About Morphixia</h1>
+                <p class="hero-subtitle">Transforming complexity into clarity through methodical analysis and thoughtful design</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="about-section-title">Our Story</h2>
+            <div class="about-story">
+                <p>Morphixia was founded on a simple yet powerful idea: complex business processes and systems can be transformed into clear, efficient solutions through methodical analysis and thoughtful design.</p>
+                
+                <p>The name "Morphixia" embodies our core philosophy—the ability to transform, adapt, and reshape. Just as businesses must evolve in today's dynamic environment, our approach helps organizations visualize their current state and transform into more efficient, effective versions of themselves.</p>
+                
+                <p>With expertise in Business Process Model and Notation (BPMN), ICONIX methodology, and UI/UX design, we bridge the gap between business challenges and technical solutions, creating clarity where confusion once existed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="about-section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="about-section-title">Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3>Our Mission</h3>
+                    <p>To transform complex business processes and systems into clear, efficient solutions through methodical analysis and thoughtful design.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <h3>Our Vision</h3>
+                    <p>A world where businesses thrive through optimized processes, well-designed systems, and intuitive user experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="about-section-title">Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="value-title">Transformation</h3>
+                    <p>We believe in the power of positive change and continuous improvement.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="value-title">Clarity</h3>
+                    <p>We transform complexity into understanding through visualization and documentation.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3 class="value-title">Precision</h3>
+                    <p>We approach every project with methodical analysis and attention to detail.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="value-title">Adaptability</h3>
+                    <p>We design flexible solutions that evolve with your business needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="about-section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="about-section-title">Our Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <h3 class="expertise-title">Business Process Analysis</h3>
+                    <ul class="expertise-list">
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Business Process Model and Notation (BPMN)</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Process optimization and redesign</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Bottleneck identification and resolution</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Workflow documentation and standardization</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3 class="expertise-title">System Design</h3>
+                    <ul class="expertise-list">
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>ICONIX methodology</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Requirements analysis and documentation</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Domain modeling and use case development</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>System architecture and technical specifications</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card">
+                    <h3 class="expertise-title">UI/UX Design</h3>
+                    <ul class="expertise-list">
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>User research and persona development</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Wireframing and information architecture</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Visual design and branding consistency</span>
+                        </li>
+                        <li class="expertise-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Prototyping and usability testing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Technologies Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="about-section-title">Tools & Technologies</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4 class="tool-title">Lucidchart</h4>
+                    <p>Process Modeling</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h4 class="tool-title">draw.io</h4>
+                    <p>Process Modeling</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <h4 class="tool-title">Visio</h4>
+                    <p>Process Modeling</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h4 class="tool-title">StarUML</h4>
+                    <p>System Design</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h4 class="tool-title">Enterprise Architect</h4>
+                    <p>System Design</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h4 class="tool-title">Figma</h4>
+                    <p>UI/UX Design</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fab fa-adobe"></i>
+                    </div>
+                    <h4 class="tool-title">Adobe XD</h4>
+                    <p>UI/UX Design</p>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4 class="tool-title">HTML5/CSS3</h4>
+                    <p>Web Development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team/Personal Section -->
+    <section class="about-section team-section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="about-section-title">The Mind Behind Morphixia</h2>
+            <div class="team-bio">
+                <div class="team-image">
+                    <img src="img/team-photo.jpg" alt="Morphixia Team">
+                </div>
+                <p>Morphixia is driven by passion for transforming complex challenges into clear, efficient solutions. With expertise in system analysis, process modeling, and UI/UX design, we bring a unique combination of analytical precision and creative problem-solving to every project.</p>
+                
+                <p>Our background in information systems, combined with practical experience in business process analysis and design, allows us to bridge the gap between business needs and technical implementation.</p>
+                
+                <p>We're committed to continuous learning and staying current with the latest methodologies and technologies, ensuring that our clients receive solutions that are both innovative and practical.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="contact-cta-title">Let's Work Together</h2>
+            <p class="contact-cta-subtitle">Ready to transform your business processes and systems?</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="img/logo-white.png" alt="Morphixia Logo">
+                        <span class="logo-text">Morphixia</span>
+                    </div>
+                    <p class="footer-about">Morphixia specializes in business process analysis, system design, and UI/UX services. We transform complex challenges into clear, efficient solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="services.html">Services</a></li>
+                        <li class="footer-link"><a href="portfolio.html">Portfolio</a></li>
+                        <li class="footer-link"><a href="about.html">About</a></li>
+                        <li class="footer-link"><a href="blog.html">Blog</a></li>
+                        <li class="footer-link"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@morphixia.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Morphixia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

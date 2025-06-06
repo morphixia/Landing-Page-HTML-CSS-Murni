@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Morphixia</title>
+    <meta name="description" content="Morphixia offers professional business process analysis, system design, and UI/UX services to transform your business operations.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <style>
+        /* Additional styles specific to services page */
+        .service-detail {
+            padding: 3rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .service-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .service-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .service-detail-image img {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .service-process {
+            margin-top: 2rem;
+        }
+        
+        .process-steps {
+            margin-top: 1.5rem;
+        }
+        
+        .process-step {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .service-benefits {
+            margin-top: 2rem;
+        }
+        
+        .benefits-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .benefit-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefit-item i {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+        
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .pricing-feature {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .pricing-feature i {
+            color: var(--primary-color);
+            margin-right: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        
+        .pricing-cta {
+            margin-top: 1.5rem;
+        }
+        
+        .testimonials {
+            margin-top: 4rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: '\201C';
+            font-size: 3rem;
+            color: var(--light-gray);
+            position: absolute;
+            left: -1rem;
+            top: -1rem;
+            opacity: 0.5;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        .testimonial-position {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .service-detail-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-detail-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Morphixia Logo">
+                    <span class="logo-text">Morphixia</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Our Services</h1>
+                <p class="hero-subtitle">Morphixia offers specialized services in business process analysis, system design, and UI/UX design. Each service is delivered with methodical precision and creative insight, transforming complex challenges into clear, actionable solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Business Process Analysis -->
+            <div id="process-analysis" class="service-detail">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <h2>Business Process Analysis & Optimization</h2>
+                        <p>Our business process analysis service transforms unclear or inefficient workflows into optimized, documented processes. Using Business Process Model and Notation (BPMN), we create visual representations of your current processes, identify bottlenecks, and design improved workflows that enhance efficiency and reduce errors.</p>
+                        
+                        <div class="service-process">
+                            <h3>Our Process</h3>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Current State Analysis</h4>
+                                        <p>We document your existing processes in BPMN format, creating "as-is" diagrams that provide clarity and shared understanding.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Bottleneck Identification</h4>
+                                        <p>Through careful analysis, we identify inefficiencies, redundancies, and pain points in your current processes.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Process Redesign</h4>
+                                        <p>We create "to-be" process diagrams that optimize workflows while considering your organizational constraints and objectives.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Implementation Guidance</h4>
+                                        <p>We provide clear recommendations for implementing the improved processes, including change management considerations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-benefits">
+                            <h3>Benefits</h3>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Clear visualization of complex business processes</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Identification of inefficiencies and bottlenecks</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Standardized documentation for training and reference</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Optimized workflows that save time and resources</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Improved cross-departmental communication</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="service-detail-image">
+                        <img src="img/bpmn-diagram.jpg" alt="Business Process Analysis">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Design & Documentation -->
+            <div id="system-design" class="service-detail">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <h2>System Design & Documentation</h2>
+                        <p>Our system design service transforms requirements into comprehensive documentation that guides development and implementation. Using the ICONIX methodology, we bridge the gap between business needs and technical solutions, ensuring your systems are well-designed, maintainable, and aligned with your objectives.</p>
+                        
+                        <div class="service-process">
+                            <h3>Our Process</h3>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Requirements Analysis</h4>
+                                        <p>We gather and analyze your system requirements, ensuring a complete understanding of needs and constraints.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Domain Modeling</h4>
+                                        <p>We create clear domain models that establish the key concepts and relationships in your system.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Use Case Development</h4>
+                                        <p>We develop detailed use cases that capture system behavior from the user's perspective.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Technical Design</h4>
+                                        <p>We create design models that translate requirements into implementable technical specifications.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-benefits">
+                            <h3>Benefits</h3>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Bridging business requirements and technical implementation</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Reduced development risks and costs</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Clear documentation for development teams</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Maintainable systems with solid architectural foundations</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Traceability from requirements to implementation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="service-detail-image">
+                        <img src="img/system-design.jpg" alt="System Design & Documentation">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- UI/UX Design -->
+            <div id="ui-ux-design" class="service-detail">
+                <div class="service-detail-content">
+                    <div class="service-detail-text">
+                        <h2>UI/UX Design Services</h2>
+                        <p>Our UI/UX design service transforms user experiences through intuitive, visually appealing interfaces. We focus on creating designs that not only look professional but also enhance usability, engagement, and conversion rates.</p>
+                        
+                        <div class="service-process">
+                            <h3>Our Process</h3>
+                            <div class="process-steps">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>User Research</h4>
+                                        <p>We understand your users' needs, behaviors, and pain points to inform design decisions.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Wireframing</h4>
+                                        <p>We create low-fidelity wireframes that establish information architecture and basic layout.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Visual Design</h4>
+                                        <p>We develop high-fidelity mockups with attention to color, typography, and visual hierarchy.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Prototyping</h4>
+                                        <p>We create interactive prototypes to demonstrate functionality and user flows.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-benefits">
+                            <h3>Benefits</h3>
+                            <ul class="benefits-list">
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Intuitive interfaces that reduce learning curves</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Professional visual design that builds trust</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Improved user engagement and satisfaction</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Reduced development costs through early validation</span>
+                                </li>
+                                <li class="benefit-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Consistent user experience across platforms</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="service-detail-image">
+                        <img src="img/ui-ux-design.jpg" alt="UI/UX Design">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Our Packages</h2>
+            <div class="pricing-table">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Basic Package</h3>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Initial consultation and needs assessment</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Single process analysis OR basic wireframing</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Deliverables in standard digital formats</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>One round of revisions</span>
+                        </li>
+                    </ul>
+                    <p><strong>Perfect for:</strong> Small businesses or specific process improvements</p>
+                    <div class="pricing-cta">
+                        <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Standard Package</h3>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Comprehensive consultation and needs assessment</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Multiple process analyses OR complete UI design for small applications</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Detailed documentation and recommendations</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Two rounds of revisions</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Implementation guidance</span>
+                        </li>
+                    </ul>
+                    <p><strong>Perfect for:</strong> Medium businesses or department-level improvements</p>
+                    <div class="pricing-cta">
+                        <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Premium Package</h3>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Strategic consultation and comprehensive assessment</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>End-to-end process analysis and redesign OR complete system design with UI/UX</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Extensive documentation with implementation roadmap</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited revisions within project scope</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Post-implementation review</span>
+                        </li>
+                    </ul>
+                    <p><strong>Perfect for:</strong> Large businesses or organization-wide transformations</p>
+                    <div class="pricing-cta">
+                        <a href="contact.html" class="btn btn-primary">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <div class="testimonials">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">Morphixia transformed our chaotic order fulfillment process into a streamlined workflow that reduced errors by 60%. The BPMN diagrams provided clarity we never had before.</p>
+                        <p class="testimonial-author">Sarah J.</p>
+                        <p class="testimonial-position">Operations Manager</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The system documentation Morphixia created was instrumental in our successful software implementation. Their attention to detail and methodical approach saved us countless development hours.</p>
+                        <p class="testimonial-author">Michael T.</p>
+                        <p class="testimonial-position">IT Director</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">The UI design for our customer portal exceeded our expectations. Morphixia delivered an interface that's not only beautiful but has significantly improved our user engagement metrics.</p>
+                        <p class="testimonial-author">Priya K.</p>
+                        <p class="testimonial-position">Marketing Director</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="contact-cta-title">Ready to Transform Your Business?</h2>
+            <p class="contact-cta-subtitle">Contact us for a consultation tailored to your needs</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="img/logo-white.png" alt="Morphixia Logo">
+                        <span class="logo-text">Morphixia</span>
+                    </div>
+                    <p class="footer-about">Morphixia specializes in business process analysis, system design, and UI/UX services. We transform complex challenges into clear, efficient solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html">Home</a></li>
+                        <li class="footer-link"><a href="services.html">Services</a></li>
+                        <li class="footer-link"><a href="portfolio.html">Portfolio</a></li>
+                        <li class="footer-link"><a href="about.html">About</a></li>
+                        <li class="footer-link"><a href="blog.html">Blog</a></li>
+                        <li class="footer-link"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@morphixia.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Morphixia. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
